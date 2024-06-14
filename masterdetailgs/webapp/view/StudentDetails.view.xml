@@ -12,7 +12,7 @@
                     <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                     <Button id="_IDGenButton1" text="Add Favorite Game" press="onAddFavoriteGame" />
                 </Toolbar>
-                <List id="favoriteGamesList" items="{/FavGamesSet}">
+                <List id="favoriteGamesList" items="{FavGamesSet}">
                     <StandardListItem id="_IDGenStandardListItem1"
                         title="{Gameid}"
                         type="Active"

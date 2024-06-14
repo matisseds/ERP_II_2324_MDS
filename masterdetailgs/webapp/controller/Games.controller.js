@@ -1,7 +1,8 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
-  "sap/ui/core/UIComponent"
-], function (Controller, UIComponent) {
+  "sap/ui/core/UIComponent",
+  "sap/ui/model/json/JSONModel"
+], function (Controller, UIComponent, JSONModel) {
   "use strict";
 
   return Controller.extend("masterdetailgs.masterdetailgs.controller.Games", {
@@ -16,22 +17,19 @@ sap.ui.define([
           var oItem = oEvent.getParameter("listItem") || oEvent.getSource();
           var oBindingContext = oItem.getBindingContext();
 
-          if (!oBindingContext) {
-              console.error("Binding context is undefined");
-              return;
-          }
-
           var sGameId = oBindingContext.getProperty("Id");
-
-          if (!sGameId) {
-              console.error("Game ID is undefined");
-              return;
-          }
-
           var oRouter = UIComponent.getRouterFor(this);
           oRouter.navTo("RouteGameDetails", {
               gameId: sGameId
           });
+      },
+      formatDate: function (sDate) {
+          if (sDate) {
+              var oDate = new Date(sDate);
+              var oOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+              return oDate.toLocaleDateString("en-US", oOptions);
+          }
+          return sDate;
       }
   });
 });

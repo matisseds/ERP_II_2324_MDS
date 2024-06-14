@@ -1,6 +1,8 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], function (Controller) {
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function (Controller, Filter, FilterOperator) {
     "use strict";
 
     return Controller.extend("masterdetailgs.masterdetailgs.controller.StudentDetails", {
@@ -13,6 +15,14 @@ sap.ui.define([
             var sStudentId = oEvent.getParameter("arguments").studentId;
             var sPath = "/StudentsSet(" + sStudentId + ")";
             this.getView().bindElement(sPath);
+
+            // Apply filter to favorite games list based on Studentid
+            var oFavGamesList = this.byId("favoriteGamesList");
+            var oBinding = oFavGamesList.getBinding("items");
+            if (oBinding) {
+                var oFilter = new Filter("Studentid", FilterOperator.EQ, sStudentId);
+                oBinding.filter([oFilter]);
+            }
         },
 
         onAddFavoriteGame: function () {

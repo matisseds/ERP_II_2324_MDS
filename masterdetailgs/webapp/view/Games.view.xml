@@ -6,15 +6,16 @@
     <Page id="page" title="{i18n>gamesTitle}">
         <content>
             <List id="gameList" items="{/GameSet}" mode="SingleSelectMaster" itemPress="onItemPress">
-                <ObjectListItem id="_IDGenObjectListItem1"
+                <ObjectListItem id="gameItem"
                     title="{Name}"
                     number="{Id}"
                     numberUnit="{Genre}"
-                    type="Active">
+                    type="Active"
+                    class="gameListItem">
                     <attributes>
-                        <ObjectAttribute id="_IDGenObjectAttribute1" text="{Publisher}"/>
-                        <ObjectAttribute id="_IDGenObjectAttribute2" text="{Platform}"/>
-                        <ObjectAttribute id="_IDGenObjectAttribute3" text="{Releasedate}"/>
+                        <ObjectAttribute id="publisherAttr" text="{Publisher}"/>
+                        <ObjectAttribute id="platformAttr" text="{Platform}"/>
+                        <ObjectAttribute id="releaseDateAttr" text="{ path: 'Releasedate', formatter: '.formatDate' }"/>
                     </attributes>
                 </ObjectListItem>
             </List>

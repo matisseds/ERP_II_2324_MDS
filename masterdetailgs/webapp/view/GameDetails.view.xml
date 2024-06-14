@@ -3,19 +3,27 @@
     xmlns="sap.m"
     displayBlock="true"
     controllerName="masterdetailgs.masterdetailgs.controller.GameDetails">
-    <Page id="_IDGenPage1" title="Game Details">
+    <Page id="gameDetailsPage" title="Game Details">
         <content>
-            <VBox id="_IDGenVBox1" class="sapUiSmallMargin">
-                <Text id="_IDGenText1" text="{Name}" class="sapUiSmallMarginBottom"/>
-                <Text id="_IDGenText2" text="{Genre}" class="sapUiSmallMarginBottom"/>
-                <Text id="_IDGenText3" text="{Publisher}" class="sapUiSmallMarginBottom"/>
-                <Text id="_IDGenText4" text="{Platform}" class="sapUiSmallMarginBottom"/>
-                <Text id="_IDGenText5" text="{Releasedate}" class="sapUiSmallMarginBottom"/>
-                <Text id="_IDGenText6" text="{Coverurl}" class="sapUiSmallMarginBottom"/>
-                <Text id="_IDGenText7" text="{Description}" class="sapUiSmallMarginBottom"/>
-                <Text id="_IDGenText8" text="Favorited by students:" class="sapUiSmallMarginBottom"/>
-                <List id="_IDGenList1" items="{FavGames}">
-                    <StandardListItem id="_IDGenStandardListItem1" title="{Studentid}"/>
+            <VBox id="gameDetailsVBox" class="sapUiSmallMargin">
+                <HBox id="_IDGenHBox1" class="gameDetailsHeader">
+                    <Image id="gameCover" src="{Coverurl}" class="gameCoverImage"/>
+                    <VBox id="_IDGenVBox1" class="gameDetailsText">
+                        <Title id="gameName" text="{Name}" level="H1" class="gameTitle"/>
+                        <Text id="gameGenre" text="{Genre}" class="gameText"/>
+                        <Text id="gamePublisher" text="{Publisher}" class="gameText"/>
+                        <Text id="gamePlatform" text="{Platform}" class="gameText"/>
+                        <Text id="gameReleaseDate" text="" class="gameText"/>
+                    </VBox>
+                </HBox>
+                <Text id="gameDescription" text="{Description}" class="gameDescription"/>
+                <Title id="_IDGenTitle1" text="Favorited by students:" level="H2" class="favoritesTitle"/>
+                <List id="favoriteGamesList" items="{FavGames}">
+                    <StandardListItem id="_IDGenStandardListItem1"
+                        title="{Studentid}"
+                        description="{Studentid}" 
+                        icon="sap-icon://person-placeholder"
+                        class="favoriteItem"/>
                 </List>
             </VBox>
         </content>
