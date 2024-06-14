@@ -1,0 +1,15 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  displayBlock="true"
+  controllerName="masterdetailgs.masterdetailgs.controller.Home">
+  <Page id="_IDGenPage1" title="Home">
+    <content>
+      <VBox id="_IDGenVBox1" class="sapUiSmallMargin">
+        <Text id="_IDGenText1" text="Welcome to the Application!" class="sapUiSmallMarginBottom"/>
+        <Button id="_IDGenButton1" text="Students" press="onNavToStudents"/>
+        <Button id="_IDGenButton2" text="Games" press="onNavToGames"/>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

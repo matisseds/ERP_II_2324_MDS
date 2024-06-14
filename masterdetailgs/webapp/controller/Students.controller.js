@@ -1,0 +1,124 @@
+sap.ui.define([
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/UIComponent",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/Fragment"
+], function (Controller, UIComponent, JSONModel, Fragment) {
+    "use strict";
+
+    return Controller.extend("masterdetailgs.masterdetailgs.controller.Students", {
+        onInit: function () {
+            var oModel = this.getOwnerComponent().getModel();
+            if (!oModel) {
+                console.error("OData model is not defined");
+            }
+            this.getView().setModel(oModel);
+        },
+
+        onAddStudent: function () {
+           this._openStudentDialog("Add Student", { isEdit: false, Firstname: "", Lastname: "", Email: "" });
+
+        },
+
+        onEditStudent: function (oEvent) {
+            var oItem = oEvent.getSource().getParent().getParent();
+            var sPath = oItem.getBindingContext().getPath();
+            var oStudent = this.getView().getModel().getProperty(sPath);
+
+            this._openStudentDialog("Edit Student", { isEdit: true, ...oStudent });
+
+        },
+
+        onDeleteStudent: function (oEvent) {
+            var oItem = oEvent.getSource().getParent().getParent();
+            var sPath = oItem.getBindingContext().getPath();
+            var oModel = this.getView().getModel();
+            // Verwijder Student (.remove)
+            oModel.remove(sPath, {
+                success: function () {
+                    sap.m.MessageToast.show("Student deleted successfully");
+                },
+                error: function () {
+                    sap.m.MessageToast.show("Error deleting student");
+                }
+            });
+        },
+
+        onViewDetails: function (oEvent) {
+            var oItem = oEvent.getSource().getParent().getParent();
+            var sPath = oItem.getBindingContext().getPath();
+            var sStudentId = this.getView().getModel().getProperty(sPath + "/Sid");
+
+            var oRouter = UIComponent.getRouterFor(this);
+            oRouter.navTo("RouteStudentDetails", {
+                studentId: sStudentId
+            });
+        },
+
+        //Dialoge (fragment) voor edit/add (overzichtelijker dan een extra view)
+        _openStudentDialog: function (sTitle, oStudentData) {
+            var oView = this.getView();
+            if (!this._pDialog) {
+                this._pDialog = Fragment.load({
+                    id: oView.getId(),
+                    name: "masterdetailgs.masterdetailgs.view.StudentDialog",
+                    controller: this
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    return oDialog;
+                });
+            }
+            this._pDialog.then(function (oDialog) {
+                oDialog.setTitle(sTitle);
+                oDialog.setModel(new JSONModel(oStudentData));
+                oDialog.open();
+            });
+        },
+
+        onSaveStudent: function () {
+            var oDialog = this.byId("studentDialog");
+            var oModel = this.getView().getModel();
+            var oData = oDialog.getModel().getData();
+
+            //VW IsEdit Property (anders crash)
+            var oPayload = Object.assign({}, oData);
+            delete oPayload.isEdit;
+
+            // Verwijder SID property (word in backend al gemaakt door logische bewerking)
+            if (!oData.isEdit) {
+                delete oPayload.Sid;
+            }
+
+            if (oData.isEdit) {
+                var sPath = "/StudentsSet(" + oData.Sid + ")";
+                //Update Student
+                oModel.update(sPath, oPayload, {
+                    success: function () {
+                        sap.m.MessageToast.show("Student updated successfully");
+                    },
+                    error: function () {
+                        sap.m.MessageToast.show("Error updating student");
+                    }
+                });
+            } else {
+                //Voeg student toe
+                oModel.create("/StudentsSet", oPayload, {
+                    success: function () {
+                        sap.m.MessageToast.show("Student added successfully");
+                    },
+                    error: function (oError) {
+                        console.error("Error adding student:", oError);
+                        sap.m.MessageToast.show("Error adding student");
+                    }
+                });
+            }
+
+            oDialog.close();
+        },
+
+        //Sluit dialog
+        onCancelDialog: function () {
+            this.byId("studentDialog").close();
+        }
+    });
+});

@@ -1,0 +1,25 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="masterdetailgs.masterdetailgs.controller.StudentDetails">
+    <Page id="page" title="Student Details">
+        <content>
+            <VBox id="_IDGenVBox1" class="sapUiSmallMargin">
+                <Text id="_IDGenText1" text="{Firstname} {Lastname}" class="sapUiSmallMarginBottom"/>
+                <Text id="_IDGenText2" text="{Email}" class="sapUiSmallMarginBottom"/>
+                <Toolbar id="_IDGenToolbar1">
+                    <Title id="_IDGenTitle1" text="Favorite Games" />
+                    <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                    <Button id="_IDGenButton1" text="Add Favorite Game" press="onAddFavoriteGame" />
+                </Toolbar>
+                <List id="favoriteGamesList" items="{/FavGamesSet}">
+                    <StandardListItem id="_IDGenStandardListItem1"
+                        title="{Gameid}"
+                        type="Active"
+                        press="onRemoveFavoriteGame">
+                    </StandardListItem>
+                </List>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,51 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="masterdetailgs.masterdetailgs.controller.Students">
+    <Page id="page" title="Students">
+        <content>
+            <VBox id="studentsVBox">
+                <Toolbar id="studentsToolbar">
+                    <Title id="studentsTitle" text="Manage Students" />
+                    <ToolbarSpacer id="studentsSpacer" />
+                    <Button id="addStudentButton" text="Add Student" press="onAddStudent" />
+                </Toolbar>
+                <Table id="studentTable" items="{path: '/StudentsSet'}" class="sapUiResponsiveMargin">
+                    <headerToolbar>
+                        <Toolbar id="studentsHeaderToolbar">
+                            <Title id="studentsHeaderTitle" text="Student List" />
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column id="studentIdColumn">
+                            <Text id="studentIdText" text="Student ID" />
+                        </Column>
+                        <Column id="studentSurnameColumn">
+                            <Text id="studentSurnameText" text="Surname" />
+                        </Column>
+                        <Column id="studentForenameColumn">
+                            <Text id="studentForenameText" text="Forename" />
+                        </Column>
+                        <Column id="studentActionsColumn">
+                            <Text id="studentActionsText" text="Actions" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="studentListItem">
+                            <cells>
+                                <Text id="studentIdCellText" text="{Sid}" />
+                                <Text id="studentSurnameCellText" text="{Lastname}" />
+                                <Text id="studentForenameCellText" text="{Firstname}" />
+                                <HBox id="studentActionsHBox">
+                                    <Button id="viewDetailsButton" text="Details" press="onViewDetails" />
+                                    <Button id="editStudentButton" text="Edit" press="onEditStudent" />
+                                    <Button id="removeStudentButton" text="Remove" press="onDeleteStudent" />
+                                </HBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,158 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "masterdetailgs.masterdetailgs",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.12.5",
+      "toolsId": "2ee55e47-4514-49e9-9d8c-7e70f6225c70"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZAS_61_GAMES_GW_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.124.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "masterdetailgs.masterdetailgs.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "masterdetailgs.masterdetailgs.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteHome",
+          "pattern": "",
+          "target": "home"
+        },
+        {
+          "name": "RouteStudents",
+          "pattern": "students",
+          "target": "students"
+        },
+        {
+          "name": "RouteGames",
+          "pattern": "games",
+          "target": "games"
+        },
+        {
+          "name": "RouteGameDetails",
+          "pattern": "games/{gameId}",
+          "target": "gameDetails"
+        },
+        {
+          "name": "RouteStudentDetails",
+          "pattern": "students/{studentId}",
+          "target": "studentDetails"
+        }
+      ],
+      "targets": {
+        "home": {
+          "viewName": "Home",
+          "viewId": "Home",
+          "viewLevel": 0
+        },
+        "students": {
+          "viewName": "Students",
+          "viewId": "Students",
+          "viewLevel": 1
+        },
+        "games": {
+          "viewName": "Games",
+          "viewId": "Games",
+          "viewLevel": 1
+        },
+        "gameDetails": {
+          "viewName": "GameDetails",
+          "viewId": "GameDetails",
+          "viewLevel": 2
+        },
+        "studentDetails": {
+          "viewName": "StudentDetails",
+          "viewId": "StudentDetails",
+          "viewLevel": 2
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "masterdetailgs.masterdetailgs.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}
+

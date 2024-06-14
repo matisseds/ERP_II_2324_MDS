@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog id="studentDialog" title="{dialogTitle}">
+        <VBox id="studentDialogVBox" class="sapUiSmallMargin">
+            <Title id="vbucks" text="Action Menu" level="H2" class="centeredTitle"/>
+            <Label id="studentIdLabel" text="Student ID" labelFor="studentIdInput" visible="{/isEdit}"/>
+            <Input id="studentIdInput" value="{path: '/Sid', mode: 'sap.ui.model.BindingMode.TwoWay'}" editable="false" visible="{/isEdit}"/>
+            <Label id="firstNameLabel" text="Forname" labelFor="firstNameInput"/>
+            <Input id="firstNameInput" value="{/Firstname}" />
+            <Label id="lastNameLabel" text="Surname" labelFor="lastNameInput"/>
+            <Input id="lastNameInput" value="{/Lastname}" />
+            <Label id="emailLabel" text="Email" labelFor="emailInput"/>
+            <Input id="emailInput" value="{/Email}" />
+        </VBox>
+        <buttons>
+            <Button id="saveStudentButton" text="Save" press="onSaveStudent"/>
+            <Button id="cancelDialogButton" text="Cancel" press="onCancelDialog"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>
