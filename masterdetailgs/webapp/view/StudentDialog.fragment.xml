@@ -14,8 +14,8 @@
             <Input id="emailInput" value="{/Email}" />
         </VBox>
         <buttons>
-            <Button id="saveStudentButton" text="Save" press="onSaveStudent"/>
-            <Button id="cancelDialogButton" text="Cancel" press="onCancelDialog"/>
+            <Button id="saveStudentButton" text="Save" press="onSaveStudent" type="Accept"/>
+            <Button id="cancelDialogButton" text="Cancel" press="onCancelDialog" type="Reject"/>
         </buttons>
     </Dialog>
 </core:FragmentDefinition>
