@@ -17,7 +17,7 @@
                         <HBox id="_IDGenHBox1" justifyContent="SpaceBetween" alignItems="Center">
                             <VBox id="_IDGenVBox1" class="sapUiSmallMarginEnd">
                                 <ObjectListItem id="_IDGenObjectListItem1"
-                                    title="{path: 'Gameid', formatter: '.formatGameName'}"
+                                    title=""
                                     type="Active"
                                     press="onNavToGameDetails"
                                     class="gameListItem2">
