@@ -17,8 +17,7 @@
                     </VBox>
                 </HBox>
                 <Text id="gameDescription" text="{Description}" class="gameDescription"/>
-                <Title id="_IDGenTitle1" text="Favorited by students: (To Be Implemented)" level="H2" class="favoritesTitle"/>
-                
+                <Title id="favoritesTitle" text="Favorited by students: (To Be Implemented)" level="H2" class="favoritesTitle"/>
             </VBox>
         </content>
     </Page>

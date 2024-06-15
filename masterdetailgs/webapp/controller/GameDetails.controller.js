@@ -1,7 +1,9 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
-  "sap/ui/core/Fragment"
-], function (Controller, Fragment) {
+  "sap/ui/core/Fragment",
+  "sap/ui/model/Filter",
+  "sap/ui/model/FilterOperator"
+], function (Controller, Fragment, Filter, FilterOperator) {
   "use strict";
 
   return Controller.extend("masterdetailgs.masterdetailgs.controller.GameDetails", {
@@ -21,13 +23,15 @@ sap.ui.define([
                   change: this._onBindingChange.bind(this)
               }
           });
+
+          //  fetch en toon favgame/nummer based op gameid
+          this._fetchFavoriteCount(iGameId);
       },
 
       _onBindingChange: function () {
           var oView = this.getView();
           var oElementBinding = oView.getElementBinding();
 
-          // Raar ding
           if (!oElementBinding.getBoundContext()) {
               return;
           }
@@ -38,7 +42,7 @@ sap.ui.define([
           oView.byId("gameReleaseDate").setText("Release Date: " + sFormattedDate);
       },
 
-      // formateer date, anders heb je lange string vol onnodige attributen en nu clean datum.
+      // voor datum mooier te maken
       _formatDate: function (sDate) {
           if (sDate) {
               var oDate = new Date(sDate);
@@ -46,6 +50,27 @@ sap.ui.define([
               return oDate.toLocaleDateString("en-US", oOptions);
           }
           return sDate;
+      },
+
+      // ivm aantal favorieten.
+      _fetchFavoriteCount: function (iGameId) {
+          var oModel = this.getView().getModel();
+
+          oModel.read("/FavGamesSet", {
+              success: function (oData) {
+                  // Filter op gameid
+                  var iFavoriteCount = oData.results.filter(function (game) {
+                      return game.Gameid === iGameId;
+                  }).length;
+
+                  // Zet title volgens :
+                  this.getView().byId("favoritesTitle").setText("Favorited by students: " + iFavoriteCount);
+              }.bind(this),
+              error: function (oError) {
+                  console.error("Error fetching favorite count:", oError);
+                  this.getView().byId("favoritesTitle").setText("Favorited by students: Error fetching data");
+              }.bind(this)
+          });
       }
   });
 });
