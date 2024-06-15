@@ -120,7 +120,7 @@ sap.ui.define([
                 }
             });
         },
-
+        //close de dialog
         onCancelDialog: function () {
             this.byId("addFavoriteGameDialog").close();
         }
