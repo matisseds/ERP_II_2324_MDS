@@ -16,35 +16,31 @@ sap.ui.define([
             var sPath = "/StudentsSet(" + sStudentId + ")";
             this.getView().bindElement(sPath);
 
-            // Filter studenten (nogniet werkent, backend foutje vgm)
+            this.sStudentId = sStudentId;
+            this._bindFavoriteGamesList();
+        },
+
+        // Fav games binden
+        _bindFavoriteGamesList: function () {
             var oFavGamesList = this.byId("favoriteGamesList");
             var oBinding = oFavGamesList.getBinding("items");
-            if (oBinding) {
-                var oFilter = new sap.ui.model.Filter("Studentid", sap.ui.model.FilterOperator.EQ, sStudentId);
+            if (oBinding && this.sStudentId) {
+                var oFilter = new sap.ui.model.Filter("Studentid", sap.ui.model.FilterOperator.EQ, this.sStudentId);
                 oBinding.filter([oFilter]);
+            } else {
+                console.warn("Binding or StudentId not available.");
             }
         },
 
+        // dialog openen fav games toevoegen
         onAddFavoriteGame: function () {
             var oView = this.getView();
             var sStudentId = oView.getBindingContext().getProperty("Sid");
-            var oModel = this.getView().getModel();
 
-
-                // Laad Gameset (voor combobox)
-                oModel.read("/GameSet", {
-                    success: function (oData) {
-                        console.log("GameSet data loaded:", oData);
-                        oModel.setProperty("/GameSet", oData.results);
-                        this._openAddFavoriteGameDialog(sStudentId);
-                    }.bind(this),
-                    error: function () {
-                        sap.m.MessageToast.show("Error loading games");
-                    }
-                });
+            this._openAddFavoriteGameDialog(sStudentId);
         },
 
-        //Popup
+        // dialog logica
         _openAddFavoriteGameDialog: function (sStudentId) {
             var oView = this.getView();
 
@@ -55,9 +51,7 @@ sap.ui.define([
                     controller: this
                 }).then(function (oDialog) {
                     oView.addDependent(oDialog);
-                    // geef studentid mee voor game toevoegen in fav
                     oDialog.setModel(new JSONModel({ studentId: sStudentId }), "dialogModel");
-                    console.log("Dialog model data:", oDialog.getModel("dialogModel").getData());
                     return oDialog;
                 }.bind(this));
             } else {
@@ -68,17 +62,16 @@ sap.ui.define([
 
             this._pDialog.then(function (oDialog) {
                 oDialog.open();
-                console.log("Dialog opened with data:", oDialog.getModel("dialogModel").getData());
             });
         },
 
+        // fav game toevoegen via dialog
         onAddFavoriteGameConfirm: function () {
             var oDialog = this.byId("addFavoriteGameDialog");
             var oModel = this.getView().getModel();
             var oDialogModel = oDialog.getModel("dialogModel");
             var oData = oDialogModel.getData();
 
-            // gameid via combobox
             var sSelectedGameId = this.byId("gameSelect").getSelectedKey();
 
             if (!sSelectedGameId) {
@@ -86,13 +79,11 @@ sap.ui.define([
                 return;
             }
 
-            // Payload vr game
             var oPayload = {
                 Gameid: parseInt(sSelectedGameId, 10),
                 Studentid: parseInt(oData.studentId, 10)
             };
 
-            // Nieuwe favo game toevoegen
             oModel.create("/FavGamesSet", oPayload, {
                 success: function () {
                     sap.m.MessageToast.show("Favorite game added successfully");
@@ -105,12 +96,12 @@ sap.ui.define([
             oDialog.close();
         },
 
+        // fav game vw met knop delete
         onRemoveFavoriteGame: function (oEvent) {
-            var oItem = oEvent.getSource();
+            var oItem = oEvent.getSource().getParent();
             var sPath = oItem.getBindingContext().getPath();
             var oModel = this.getView().getModel();
 
-            // Druk op game om te verwijderen momenteel* later naar knop!
             oModel.remove(sPath, {
                 success: function () {
                     sap.m.MessageToast.show("Favorite game removed successfully");
@@ -120,13 +111,36 @@ sap.ui.define([
                 }
             });
         },
-        //close de dialog
+
+        // dialog cancellen
         onCancelDialog: function () {
             this.byId("addFavoriteGameDialog").close();
+        },
+
+        formatGameName: function (sGameId) {
+            var oModel = this.getView().getModel();
+            var sPath = "/GameSet(" + sGameId + ")";
+
+            return new Promise(function (resolve, reject) {
+                oModel.read(sPath, {
+                    success: function (oData) {
+                        resolve(oData.Name);
+                    },
+                    error: function (error) {
+                        resolve(sGameId); // toont gwn id als namen niet op te halen zijn (safe)
+                    }
+                });
+            });
+        },
+
+        // nav naar gamedetails van die fav game.
+        onNavToGameDetails: function (oEvent) {
+            var oItem = oEvent.getSource();
+            var sGameId = oItem.getBindingContext().getProperty("Gameid");
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("RouteGameDetails", {
+                gameId: sGameId
+            });
         }
     });
 });
-
-
-
-

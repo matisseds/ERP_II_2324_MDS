@@ -6,21 +6,34 @@
         <content>
             <VBox id="studentDetailsVBox" class="studentDetailsVBox">
                 <Text id="extraInfo" text="Additional Information:" class="studentDetailsText"/>
-                <Text id="studentEmail" text="Email Adress: {Email}" class="studentDetailsEmail"/>
+                <Text id="studentEmail" text="Email Address: {Email}" class="studentDetailsEmail"/>
                 <Toolbar id="toolbar" class="studentToolbar">
                     <Title id="favGamesTitle" text="Favorite Games" />
                     <ToolbarSpacer id="toolbarSpacer" />
                     <Button id="addFavGameButton" text="Add Favorite Game" press="onAddFavoriteGame" type="Emphasized" class="addFavGameButton"/>
                 </Toolbar>
-                <List id="favoriteGamesList" items="{FavGamesSet}" class="favoriteGamesList">
-                    <StandardListItem id="favGamesListItem"
-                        title="{Gameid}"
-                        type="Active"
-                        press="onRemoveFavoriteGame"
-                        class="favoriteGamesListItem">
-                    </StandardListItem>
+                <List id="favoriteGamesList" items="{/FavGamesSet}" class="favoriteGamesList">
+                    <CustomListItem id="_IDGenCustomListItem1">
+                        <HBox id="_IDGenHBox1" justifyContent="SpaceBetween" alignItems="Center">
+                            <VBox id="_IDGenVBox1" class="sapUiSmallMarginEnd">
+                                <ObjectListItem id="_IDGenObjectListItem1"
+                                    title="{path: 'Gameid', formatter: '.formatGameName'}"
+                                    type="Active"
+                                    press="onNavToGameDetails"
+                                    class="favoriteGamesListItem">
+                                    <attributes>
+                                        <ObjectAttribute id="_IDGenObjectAttribute1" text="{path: 'Gameid', formatter: '.formatGameName'}"/>
+                                    </attributes>
+                                </ObjectListItem>
+                            </VBox>
+                            <Button id="_IDGenButton1" icon="sap-icon://delete" type="Reject" press="onRemoveFavoriteGame" />
+                        </HBox>
+                    </CustomListItem>
                 </List>
             </VBox>
         </content>
     </Page>
 </mvc:View>
+
+
+

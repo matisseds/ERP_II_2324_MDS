@@ -12,23 +12,30 @@ sap.ui.define([
         },
 
         init: function () {
-            // call the base component's init function
+            // standaard component stuff.
+            // Call the base component's init function
             UIComponent.prototype.init.apply(this, arguments);
 
-            // set the OData model
-            var oModel = new ODataModel("/sap/opu/odata/sap/ZAS_61_GAMES_GW_SRV/");
-            this.setModel(oModel);
+            // Initialize the OData model
+            try {
+                var oModel = new ODataModel("/sap/opu/odata/sap/ZAS_61_GAMES_GW_SRV/");
+                this.setModel(oModel);
+                console.log("OData Model initialized and set.");
+            } catch (error) {
+                console.error("Error initializing OData Model:", error);
+            }
 
-            // enable routing
+            // Enable routing
             this.getRouter().initialize();
 
-            // set the device model
+            // Set the device model
             this.setModel(models.createDeviceModel(), "device");
 
-             // include custom CSS
-             jQuery.sap.includeStyleSheet("css/style.css");
+            // Include custom CSS
+            jQuery.sap.includeStyleSheet("css/style.css");
         }
     });
 });
+
 
 
