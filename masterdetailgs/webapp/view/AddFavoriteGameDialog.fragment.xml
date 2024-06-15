@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog id="addFavoriteGameDialog" title="Add Favorite Game">
+        <VBox id="vbox">
+            <Label text="Select Game" labelFor="gameSelect"/>
+            <ComboBox id="gameSelect" items="{/GameSet}">
+                <core:Item key="{Id}" text="{Name}" />
+            </ComboBox>
+        </VBox>
+        <buttons>
+            <Button text="Add" press="onAddFavoriteGameConfirm" type="Accept"/>
+            <Button text="Cancel" press="onCancelDialog" type="Reject"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>
