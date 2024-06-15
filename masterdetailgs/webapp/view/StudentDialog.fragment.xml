@@ -3,7 +3,7 @@
     xmlns:core="sap.ui.core">
     <Dialog id="studentDialog" title="{dialogTitle}">
         <VBox id="studentDialogVBox" class="sapUiSmallMargin">
-            <Title id="vbucks" text="Action Menu" level="H2" class="centeredTitle"/>
+            <Title id="vbucks" text="Student Action Menu" level="H2" class="centeredTitle"/>
             <Label id="studentIdLabel" text="Student ID" labelFor="studentIdInput" visible="{/isEdit}"/>
             <Input id="studentIdInput" value="{path: '/Sid', mode: 'sap.ui.model.BindingMode.TwoWay'}" editable="false" visible="{/isEdit}"/>
             <Label id="firstNameLabel" text="Forname" labelFor="firstNameInput"/>

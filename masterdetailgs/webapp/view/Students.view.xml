@@ -2,13 +2,13 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     controllerName="masterdetailgs.masterdetailgs.controller.Students">
-    <Page id="page" title="Students">
+    <Page id="page" title="Students Menu">
         <content>
             <VBox id="studentsVBox" class="studentsVBox">
                 <Toolbar id="studentsToolbar" class="studentsToolbar">
                     <Title id="studentsTitle" text="Manage Students" />
                     <ToolbarSpacer id="studentsSpacer" />
-                    <Button id="addStudentButton" text="Add Student" type="Emphasized" press="onAddStudent" />
+                    <Button id="addStudentButton" text="+" type="Emphasized" press="onAddStudent"/>
                 </Toolbar>
                 <Table id="studentTable" items="{path: '/StudentsSet'}" class="sapUiResponsiveMargin studentsTable">
                     <headerToolbar>

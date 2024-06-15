@@ -82,6 +82,7 @@
 .studentsVBox {
     padding: 16px;
     background-color: #f9f9f9;
+
 }
 
 .studentsToolbar {
@@ -233,4 +234,8 @@
 
 .menuButton:hover {
     background-color: #0056b3;
+}
+.abc {
+    text-align: center;
+    margin-left: 50px;
 }
