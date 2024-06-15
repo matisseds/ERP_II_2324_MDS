@@ -20,7 +20,7 @@
                                     title="{path: 'Gameid', formatter: '.formatGameName'}"
                                     type="Active"
                                     press="onNavToGameDetails"
-                                    class="favoriteGamesListItem">
+                                    class="gameListItem2">
                                     <attributes>
                                         <ObjectAttribute id="_IDGenObjectAttribute1" text="{path: 'Gameid', formatter: '.formatGameName'}"/>
                                     </attributes>

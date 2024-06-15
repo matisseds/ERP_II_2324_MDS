@@ -243,3 +243,8 @@
 .dbb {
     margin-left: 10px;
 }
+
+.gameListItem2 {
+    font-weight: bold;
+    color: #007acc;
+}
