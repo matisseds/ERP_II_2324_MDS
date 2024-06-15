@@ -37,10 +37,10 @@ sap.ui.define([
             var oModel = this.getView().getModel();
             oModel.remove(sPath, {
                 success: function () {
-                    sap.m.MessageToast.show("Student deleted successfully");
+                    sap.m.MessageToast.show("Student deleted successfully for the system!");
                 },
                 error: function () {
-                    sap.m.MessageToast.show("Error deleting student");
+                    sap.m.MessageToast.show("Error deleting student, contact the administrator!");
                 }
             });
         },
@@ -119,21 +119,21 @@ sap.ui.define([
                 // Update Student
                 oModel.update(sPath, oPayload, {
                     success: function () {
-                        sap.m.MessageToast.show("Student updated successfully");
+                        sap.m.MessageToast.show("Student updated successfully!");
                     },
                     error: function () {
-                        sap.m.MessageToast.show("Error updating student");
+                        sap.m.MessageToast.show("Error updating student, contact the administrator!");
                     }
                 });
             } else {
                 // Voeg student toe
                 oModel.create("/StudentsSet", oPayload, {
                     success: function () {
-                        sap.m.MessageToast.show("Student added successfully");
+                        sap.m.MessageToast.show("Student added successfully to the system!");
                     },
                     error: function (oError) {
                         console.error("Error adding student:", oError);
-                        sap.m.MessageToast.show("Error adding student");
+                        sap.m.MessageToast.show("Error adding student, contact the administrator!");
                     }
                 });
             }

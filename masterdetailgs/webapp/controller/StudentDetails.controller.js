@@ -47,7 +47,7 @@ sap.ui.define([
                             });
                         }.bind(this),
                         error: function (oError) {
-                            console.error("Error fetching favorite games:", oError);
+                            console.error("Error fetching favg:", oError);
                         }
                     });
                 } else {
@@ -110,15 +110,15 @@ sap.ui.define([
                 Studentid: parseInt(oData.studentId, 10)
             };
 
-            // voegt game toe aan favorieten.
+            // voegt game toe aan favorieten. OMODEL
             oModel.create("/FavGamesSet", oPayload, {
                 success: function () {
-                    sap.m.MessageToast.show("Favorite game added successfully");
+                    sap.m.MessageToast.show("Game added successfully to favorites");
                     // refreshed de lijst (anders moest je pagina reloaden)
                     this._bindFavoriteGamesList();
                 }.bind(this),
                 error: function () {
-                    sap.m.MessageToast.show("You already added this game to favorites");
+                    sap.m.MessageToast.show("You already added this game to favorites!");
                 }
             });
 
@@ -141,6 +141,7 @@ sap.ui.define([
                 // Pad (apart van de item aangezien dat niet het pad is waar de favgame moet vw worden)
                 var sFullPath = "/FavGamesSet(Gameid=" + sGameId + ",Studentid=" + sStudentId + ")";
         
+                // vw fg OMODEL
                 oModel.remove(sFullPath, {
                     success: function () {
                         sap.m.MessageToast.show("Game has been succesfully removed from favorites!");
@@ -154,7 +155,7 @@ sap.ui.define([
                 });
             } else {
                 console.error("Invalid Gameid or Studentid:", sGameId, sStudentId);
-                sap.m.MessageToast.show("Invalid Game ID or Student ID");
+                sap.m.MessageToast.show("Error: Game/Student don't match.");
             }
         }
         ,

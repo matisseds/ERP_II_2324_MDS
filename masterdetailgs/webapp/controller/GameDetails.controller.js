@@ -68,7 +68,7 @@ sap.ui.define([
               }.bind(this),
               error: function (oError) {
                   console.error("Error fetching favorite count:", oError);
-                  this.getView().byId("favoritesTitle").setText("Favorited by students: Error fetching data");
+                  this.getView().byId("favoritesTitle").setText("Favorited by students: Error with data");
               }.bind(this)
           });
       }
