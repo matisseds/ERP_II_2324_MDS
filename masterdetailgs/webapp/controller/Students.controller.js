@@ -2,8 +2,9 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/Fragment"
-], function (Controller, UIComponent, JSONModel, Fragment) {
+    "sap/ui/core/Fragment",
+    "sap/m/MessageToast"
+], function (Controller, UIComponent, JSONModel, Fragment, MessageToast) {
     "use strict";
 
     return Controller.extend("masterdetailgs.masterdetailgs.controller.Students", {
@@ -16,8 +17,7 @@ sap.ui.define([
         },
 
         onAddStudent: function () {
-           this._openStudentDialog("Add Student", { isEdit: false, Firstname: "", Lastname: "", Email: "" });
-
+            this._openStudentDialog("Add Student", { isEdit: false, Firstname: "", Lastname: "", Email: "" });
         },
 
         onEditStudent: function (oEvent) {
@@ -26,7 +26,6 @@ sap.ui.define([
             var oStudent = this.getView().getModel().getProperty(sPath);
 
             this._openStudentDialog("Edit Student", { isEdit: true, ...oStudent });
-
         },
 
         onDeleteStudent: function (oEvent) {
@@ -80,7 +79,7 @@ sap.ui.define([
             var oModel = this.getView().getModel();
             var oData = oDialog.getModel().getData();
 
-            //VW IsEdit Property (anders crash)
+            // VW IsEdit Property (anders crash)
             var oPayload = Object.assign({}, oData);
             delete oPayload.isEdit;
 
@@ -89,9 +88,31 @@ sap.ui.define([
                 delete oPayload.Sid;
             }
 
+            // Niks mag leeg zijn bij create / edit.
+            var aFields = [
+                this.byId("firstNameInput"),
+                this.byId("lastNameInput"),
+                this.byId("emailInput")
+            ];
+
+            var bValid = true;
+            aFields.forEach(function (oField) {
+                if (!oField.getValue()) {
+                    oField.setValueState("Error");
+                    bValid = false;
+                } else {
+                    oField.setValueState("None");
+                }
+            });
+
+            if (!bValid) {
+                sap.m.MessageToast.show("Please fill in all fields");
+                return;
+            }
+
             if (oData.isEdit) {
                 var sPath = "/StudentsSet(" + oData.Sid + ")";
-                //Update Student
+                // Update Student
                 oModel.update(sPath, oPayload, {
                     success: function () {
                         sap.m.MessageToast.show("Student updated successfully");
@@ -101,7 +122,7 @@ sap.ui.define([
                     }
                 });
             } else {
-                //Voeg student toe
+                // Voeg student toe
                 oModel.create("/StudentsSet", oPayload, {
                     success: function () {
                         sap.m.MessageToast.show("Student added successfully");
@@ -116,7 +137,7 @@ sap.ui.define([
             oDialog.close();
         },
 
-        //Sluit dialog
+        // Sluit dialog
         onCancelDialog: function () {
             this.byId("studentDialog").close();
         }
