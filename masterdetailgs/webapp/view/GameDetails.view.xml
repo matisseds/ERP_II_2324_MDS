@@ -17,14 +17,8 @@
                     </VBox>
                 </HBox>
                 <Text id="gameDescription" text="{Description}" class="gameDescription"/>
-                <Title id="_IDGenTitle1" text="Favorited by students:" level="H2" class="favoritesTitle"/>
-                <List id="favoriteGamesList" items="{FavGames}">
-                    <StandardListItem id="_IDGenStandardListItem1"
-                        title="{Studentid}"
-                        description="{Studentid}" 
-                        icon="sap-icon://person-placeholder"
-                        class="favoriteItem"/>
-                </List>
+                <Title id="_IDGenTitle1" text="Favorited by students: (To Be Implemented)" level="H2" class="favoritesTitle"/>
+                
             </VBox>
         </content>
     </Page>

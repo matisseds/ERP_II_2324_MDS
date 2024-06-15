@@ -2,21 +2,22 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     controllerName="masterdetailgs.masterdetailgs.controller.StudentDetails">
-    <Page id="studentDetailsPage" title="Student Details">
+    <Page id="studentDetailsPage" title="Student: {Firstname} {Lastname} ({Sid})">
         <content>
-            <VBox id="studentDetailsVBox" class="sapUiSmallMargin">
-                <Text id="studentName" text="{Firstname} {Lastname}" class="sapUiSmallMarginBottom"/>
-                <Text id="studentEmail" text="{Email}" class="sapUiSmallMarginBottom"/>
-                <Toolbar id="toolbar">
+            <VBox id="studentDetailsVBox" class="studentDetailsVBox">
+                <Text id="extraInfo" text="Additional Information:" class="studentDetailsText"/>
+                <Text id="studentEmail" text="Email Adress: {Email}" class="studentDetailsEmail"/>
+                <Toolbar id="toolbar" class="studentToolbar">
                     <Title id="favGamesTitle" text="Favorite Games" />
                     <ToolbarSpacer id="toolbarSpacer" />
-                    <Button id="addFavGameButton" text="Add Favorite Game" press="onAddFavoriteGame" />
+                    <Button id="addFavGameButton" text="Add Favorite Game" press="onAddFavoriteGame" type="Emphasized" class="addFavGameButton"/>
                 </Toolbar>
-                <List id="favoriteGamesList" items="{FavGamesSet}">
+                <List id="favoriteGamesList" items="{FavGamesSet}" class="favoriteGamesList">
                     <StandardListItem id="favGamesListItem"
                         title="{Gameid}"
                         type="Active"
-                        press="onRemoveFavoriteGame">
+                        press="onRemoveFavoriteGame"
+                        class="favoriteGamesListItem">
                     </StandardListItem>
                 </List>
             </VBox>

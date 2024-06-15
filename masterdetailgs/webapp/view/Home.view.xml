@@ -3,12 +3,12 @@
   xmlns="sap.m"
   displayBlock="true"
   controllerName="masterdetailgs.masterdetailgs.controller.Home">
-  <Page id="_IDGenPage1" title="Home">
+  <Page id="homePage" title="">
     <content>
-      <VBox id="_IDGenVBox1" class="sapUiSmallMargin">
-        <Text id="_IDGenText1" text="Welcome to the Application!" class="sapUiSmallMarginBottom"/>
-        <Button id="_IDGenButton1" text="Students" press="onNavToStudents"/>
-        <Button id="_IDGenButton2" text="Games" press="onNavToGames"/>
+      <VBox id="menuVBox" class="menuVBox">
+        <Text id="welcomeText" text="Master Detail Applicatie Menu" class="menuText"/>
+        <Button id="studentsButton" text="Students" press="onNavToStudents" class="menuButton"/>
+        <Button id="gamesButton" text="Games" press="onNavToGames" class="menuButton"/>
       </VBox>
     </content>
   </Page>

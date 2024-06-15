@@ -43,7 +43,6 @@
     margin-bottom: 5px;
 }
 /*Games*/
-/* style.css */
 .gameListItem {
     margin: 10px 0;
     padding: 10px;
@@ -78,4 +77,160 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.studentsVBox {
+    padding: 16px;
+    background-color: #f9f9f9;
+}
+
+.studentsToolbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.studentsTable {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto; 
+    max-width: 1175px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.studentsHeaderToolbar {
+    background-color: #f3f3f3;
+    padding: 8px;
+}
+
+.studentColumn {
+    text-align: left;
+    padding: 8px;
+    border-right: 1px solid #ddd; 
+}
+
+.studentColumn:last-child {
+    border-right: none; 
+}
+
+.studentListItem {
+    border-bottom: 1px solid #eee;
+}
+
+.studentCellText {
+    font-size: 14px;
+    color: #333;
+}
+
+.studentActionsHBox {
+    justify-content: flex-end;
+    gap: 8px; 
+    padding-right: 16px; 
+}
+
+.studentActionButton {
+    margin-left: 8px;
+}
+
+.viewDetailsButton {
+    color: #1976d2;
+}
+
+.editStudentButton {
+    color: #ffb300;
+}
+
+.removeStudentButton {
+    color: #d32f2f;
+}
+
+/* Student Details*/
+.studentDetailsVBox {
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.studentDetailsText {
+    font-size: 16px;
+    color: #333;
+}
+
+.studentDetailsEmail {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 16px;
+}
+
+.studentToolbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.favoriteGamesList {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 16px;
+}
+
+.favoriteGamesListItem {
+    border-bottom: 1px solid #eee;
+    padding: 8px;
+}
+
+.favoriteGamesListItem:last-child {
+    border-bottom: none;
+}
+
+.addFavGameButton {
+    margin-left: auto;
+}
+
+.listItemText {
+    font-size: 14px;
+    color: #333;
+}
+
+.removeButton {
+    color: #d32f2f;
+}
+.menuVBox {
+    padding-top: 50px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    margin-top: 250px;
+}
+
+.menuText {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 24px;
+}
+
+.menuButton {
+    width: 100%;
+    margin-bottom: 16px;
+    font-size: 18px;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.menuButton:hover {
+    background-color: #0056b3;
 }

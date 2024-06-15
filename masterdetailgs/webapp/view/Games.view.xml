@@ -3,7 +3,7 @@
     xmlns="sap.m"
     displayBlock="true"
     controllerName="masterdetailgs.masterdetailgs.controller.Games">
-    <Page id="page" title="{i18n>gamesTitle}">
+    <Page id="page" title="All Games">
         <content>
             <List id="gameList" items="{/GameSet}" mode="SingleSelectMaster" itemPress="onItemPress">
                 <ObjectListItem id="gameItem"

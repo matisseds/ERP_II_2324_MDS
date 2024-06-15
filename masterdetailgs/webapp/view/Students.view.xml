@@ -4,42 +4,42 @@
     controllerName="masterdetailgs.masterdetailgs.controller.Students">
     <Page id="page" title="Students">
         <content>
-            <VBox id="studentsVBox">
-                <Toolbar id="studentsToolbar">
+            <VBox id="studentsVBox" class="studentsVBox">
+                <Toolbar id="studentsToolbar" class="studentsToolbar">
                     <Title id="studentsTitle" text="Manage Students" />
                     <ToolbarSpacer id="studentsSpacer" />
-                    <Button id="addStudentButton" text="Add Student" press="onAddStudent" />
+                    <Button id="addStudentButton" text="Add Student" type="Emphasized" press="onAddStudent" />
                 </Toolbar>
-                <Table id="studentTable" items="{path: '/StudentsSet'}" class="sapUiResponsiveMargin">
+                <Table id="studentTable" items="{path: '/StudentsSet'}" class="sapUiResponsiveMargin studentsTable">
                     <headerToolbar>
-                        <Toolbar id="studentsHeaderToolbar">
+                        <Toolbar id="studentsHeaderToolbar" class="studentsHeaderToolbar">
                             <Title id="studentsHeaderTitle" text="Student List" />
                         </Toolbar>
                     </headerToolbar>
                     <columns>
-                        <Column id="studentIdColumn">
+                        <Column id="studentIdColumn" class="studentColumn">
                             <Text id="studentIdText" text="Student ID" />
                         </Column>
-                        <Column id="studentSurnameColumn">
+                        <Column id="studentSurnameColumn" class="studentColumn">
                             <Text id="studentSurnameText" text="Surname" />
                         </Column>
-                        <Column id="studentForenameColumn">
+                        <Column id="studentForenameColumn" class="studentColumn">
                             <Text id="studentForenameText" text="Forename" />
                         </Column>
-                        <Column id="studentActionsColumn">
-                            <Text id="studentActionsText" text="Actions" />
+                        <Column id="studentActionsColumn" class="studentColumn">
+                            <Text id="studentActionsText" text="" />
                         </Column>
                     </columns>
                     <items>
-                        <ColumnListItem id="studentListItem">
+                        <ColumnListItem id="studentListItem" class="studentListItem">
                             <cells>
-                                <Text id="studentIdCellText" text="{Sid}" />
-                                <Text id="studentSurnameCellText" text="{Lastname}" />
-                                <Text id="studentForenameCellText" text="{Firstname}" />
-                                <HBox id="studentActionsHBox">
-                                    <Button id="viewDetailsButton" text="Details" press="onViewDetails" />
-                                    <Button id="editStudentButton" text="Edit" press="onEditStudent" />
-                                    <Button id="removeStudentButton" text="Remove" press="onDeleteStudent" />
+                                <Text id="studentIdCellText" text="{Sid}" class="studentCellText" />
+                                <Text id="studentSurnameCellText" text="{Lastname}" class="studentCellText" />
+                                <Text id="studentForenameCellText" text="{Firstname}" class="studentCellText" />
+                                <HBox id="studentActionsHBox" class="studentActionsHBox">
+                                    <Button id="viewDetailsButton" text="Details" type="Transparent" press="onViewDetails" class="viewDetailsButton" />
+                                    <Button id="editStudentButton" text="Edit" type="Transparent" press="onEditStudent" class="editStudentButton" />
+                                    <Button id="removeStudentButton" text="Remove" type="Transparent" press="onDeleteStudent" class="removeStudentButton" />
                                 </HBox>
                             </cells>
                         </ColumnListItem>
