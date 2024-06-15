@@ -21,10 +21,10 @@
                             <Text id="studentIdText" text="Student ID" />
                         </Column>
                         <Column id="studentSurnameColumn" class="studentColumn">
-                            <Text id="studentSurnameText" text="Surname" />
+                            <Text id="studentSurnameText" text="Family Name" />
                         </Column>
                         <Column id="studentForenameColumn" class="studentColumn">
-                            <Text id="studentForenameText" text="Forename" />
+                            <Text id="studentForenameText" text="First Name" />
                         </Column>
                         <Column id="studentActionsColumn" class="studentColumn">
                             <Text id="studentActionsText" text="" />
