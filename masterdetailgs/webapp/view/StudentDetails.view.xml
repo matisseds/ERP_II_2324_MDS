@@ -12,7 +12,7 @@
                     <ToolbarSpacer id="toolbarSpacer" />
                     <Button id="addFavGameButton" text="Add Favorite Game" press="onAddFavoriteGame" type="Emphasized" class="addFavGameButton"/>
                 </Toolbar>
-                <List id="favoriteGamesList" items="{/FavGamesSet}" class="favoriteGamesList">
+                <List id="favoriteGamesList" items="{path: '/'}" class="favoriteGamesList">
                     <CustomListItem id="_IDGenCustomListItem1">
                         <HBox id="_IDGenHBox1" justifyContent="SpaceBetween" alignItems="Center">
                             <VBox id="_IDGenVBox1" class="sapUiSmallMarginEnd">
@@ -34,6 +34,7 @@
         </content>
     </Page>
 </mvc:View>
+
 
 
 

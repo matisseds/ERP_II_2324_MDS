@@ -13,6 +13,7 @@ sap.ui.define([
           }
           this.getView().setModel(oModel);
       },
+      //ga naar game details als je op de listitem drukt.
       onItemPress: function (oEvent) {
           var oItem = oEvent.getParameter("listItem") || oEvent.getSource();
           var oBindingContext = oItem.getBindingContext();
@@ -23,6 +24,7 @@ sap.ui.define([
               gameId: sGameId
           });
       },
+      //formateer tijd, anders had je lange string vol met onnodige attributen.
       formatDate: function (sDate) {
           if (sDate) {
               var oDate = new Date(sDate);

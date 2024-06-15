@@ -27,7 +27,7 @@ sap.ui.define([
           var oView = this.getView();
           var oElementBinding = oView.getElementBinding();
 
-          // Woops
+          // Raar ding
           if (!oElementBinding.getBoundContext()) {
               return;
           }
@@ -38,6 +38,7 @@ sap.ui.define([
           oView.byId("gameReleaseDate").setText("Release Date: " + sFormattedDate);
       },
 
+      // formateer date, anders heb je lange string vol onnodige attributen en nu clean datum.
       _formatDate: function (sDate) {
           if (sDate) {
               var oDate = new Date(sDate);

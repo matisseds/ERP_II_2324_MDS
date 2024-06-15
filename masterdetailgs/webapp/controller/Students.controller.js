@@ -16,10 +16,12 @@ sap.ui.define([
             this.getView().setModel(oModel);
         },
 
+        // call dialog voor student aanmaken
         onAddStudent: function () {
             this._openStudentDialog("Add Student", { isEdit: false, Firstname: "", Lastname: "", Email: "" });
         },
 
+        // edit student
         onEditStudent: function (oEvent) {
             var oItem = oEvent.getSource().getParent().getParent();
             var sPath = oItem.getBindingContext().getPath();
@@ -28,11 +30,11 @@ sap.ui.define([
             this._openStudentDialog("Edit Student", { isEdit: true, ...oStudent });
         },
 
+        // Verwijder Student (.remove)
         onDeleteStudent: function (oEvent) {
             var oItem = oEvent.getSource().getParent().getParent();
             var sPath = oItem.getBindingContext().getPath();
             var oModel = this.getView().getModel();
-            // Verwijder Student (.remove)
             oModel.remove(sPath, {
                 success: function () {
                     sap.m.MessageToast.show("Student deleted successfully");
@@ -43,6 +45,7 @@ sap.ui.define([
             });
         },
 
+        // ga naar detail pagina van die student voor fav games + email te zien.
         onViewDetails: function (oEvent) {
             var oItem = oEvent.getSource().getParent().getParent();
             var sPath = oItem.getBindingContext().getPath();
@@ -74,6 +77,7 @@ sap.ui.define([
             });
         },
 
+        // ok -> dialog =
         onSaveStudent: function () {
             var oDialog = this.byId("studentDialog");
             var oModel = this.getView().getModel();
@@ -83,7 +87,7 @@ sap.ui.define([
             var oPayload = Object.assign({}, oData);
             delete oPayload.isEdit;
 
-            // Verwijder SID property (word in backend al gemaakt door logische bewerking)
+            // Verwijder SID property (word in backend al gemaakt door logische bewerking via max nr)
             if (!oData.isEdit) {
                 delete oPayload.Sid;
             }
